@@ -6,6 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
+    private const val BASE_URL = "https://demo.lazday.com/rest-api-sample/" // Ensure it ends with '/'
+
     fun getInstance(): ApiService {
         val mHttpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -14,7 +16,7 @@ object ApiClient {
             .addInterceptor(mHttpLoggingInterceptor)
             .build()
         val builder = Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(mOkHttpClient)
             .build()
